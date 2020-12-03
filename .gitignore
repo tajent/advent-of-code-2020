@@ -1,0 +1,18 @@
+# Build Tools
+#============
+target/
+build/
+.gradle/
+out/
+gradle.properties
+
+# IDEA
+.idea/
+!.idea/codeStyles
+*.ipr
+*.iws
+*.iml
+
+# OSX system files
+.DS_Store
+
