@@ -1,17 +1,34 @@
 class DayOne {
 
-    fun sumTo(values: List<Int>, sumTarget: Int): Int {
-        if (values.size <=1) {
-            return 0
-        }
-        val value = values.first()
-        val newList = values.drop(1)
+    fun sumTwoNumbers(values: Set<Int>, sumTarget: Int): Set<Int>{
+        val result = mutableSetOf<Int>()
 
-        newList.forEach { nextValue ->
-            if (value + nextValue == sumTarget) {
-                return value * nextValue
+        for (valueOne in values) {
+            for (valueTwo in values) {
+                if (valueOne + valueTwo == sumTarget) {
+                    return setOf(valueOne, valueTwo)
+                }
             }
         }
-        return sumTo(newList, sumTarget)
+        return result
+    }
+
+    fun sumThreeNumbers(values: Set<Int>, sumTarget: Int): Set<Int>{
+        val result = mutableSetOf<Int>()
+
+        for (valueOne in values) {
+            for (valueTwo in values) {
+                for (valueThree in values) {
+                    if (valueOne + valueTwo + valueThree == sumTarget) {
+                        return setOf(valueOne, valueThree, valueTwo)
+                    }
+                }
+            }
+        }
+        return result
+    }
+
+    fun getProductOfNumbers(values: Set<Int>): Int {
+        return values.reduce { acc, i ->  acc * i }
     }
 }
