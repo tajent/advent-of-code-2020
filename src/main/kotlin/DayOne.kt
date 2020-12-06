@@ -1,31 +1,25 @@
+import java.util.*
+
 class DayOne {
+    private val resultToPrint = mutableSetOf<Int>()
 
-    fun sumTwoNumbers(values: Set<Int>, sumTarget: Int): Set<Int>{
-        val result = mutableSetOf<Int>()
-
-        for (valueOne in values) {
-            for (valueTwo in values) {
-                if (valueOne + valueTwo == sumTarget) {
-                    return setOf(valueOne, valueTwo)
+    private fun loopThroughNumbers(values: Set<Int>, sumTarget: Int, depth: Int, result: Stack<Int>, numbers: Int) {
+        for (value in values) {
+            result.add(value)
+            if( depth < numbers-1 ) {
+                loopThroughNumbers(values, sumTarget,depth+1, result, numbers)
+            } else {
+                if (result.sum() == sumTarget) {
+                    resultToPrint.addAll(result.toHashSet())
                 }
             }
+            result.pop()
         }
-        return result
     }
 
-    fun sumThreeNumbers(values: Set<Int>, sumTarget: Int): Set<Int>{
-        val result = mutableSetOf<Int>()
-
-        for (valueOne in values) {
-            for (valueTwo in values) {
-                for (valueThree in values) {
-                    if (valueOne + valueTwo + valueThree == sumTarget) {
-                        return setOf(valueOne, valueThree, valueTwo)
-                    }
-                }
-            }
-        }
-        return result
+    fun sumNumbersTo(values: Set<Int>, sumTarget: Int, depth: Int, numbers: Int): Set<Int>{
+        loopThroughNumbers(values, sumTarget, depth, Stack(), numbers)
+        return resultToPrint
     }
 
     fun getProductOfNumbers(values: Set<Int>): Int {
