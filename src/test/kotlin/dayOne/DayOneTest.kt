@@ -1,3 +1,6 @@
+package dayOne
+
+import DayOne
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import java.io.File
@@ -37,5 +40,15 @@ class DayOneTest {
         val intInput = mutableSetOf<Int>()
         File(fileName).forEachLine { intInput.add(it.toInt()) }
         return intInput
+    }
+
+
+    @Test
+    fun testKotlin() {
+        val pass = "abcdce"
+        val result = pass.count { it == 'c' }
+        assertEquals(2, result)
+        val inRange = 0 in 1..10
+        assertEquals(true, inRange)
     }
 }

@@ -15,4 +15,5 @@ gradle.properties
 
 # OSX system files
 .DS_Store
+.talismanrc
 
