@@ -31,14 +31,14 @@ internal class DayTwoTest {
     @Test
     fun shouldReturnTrueForValidPassword() {
         val passwordData = listOf("15-19", "k:", "kkkkkkkkkkkkzkkkkkkk")
-        val result = DayTwo().checkPasswordValid(passwordData)
+        val result = DayTwo().checkPasswordValidForOldPolicy(passwordData)
         assertTrue(result)
     }
 
     @Test
     fun shouldReturnFalseForInvalidPassword() {
         val passwordData = listOf("10-12", "k:", "kkkkkkkkkkkkzkkkkkkk")
-        val result = DayTwo().checkPasswordValid(passwordData)
+        val result = DayTwo().checkPasswordValidForOldPolicy(passwordData)
         assertFalse(result)
     }
 }
