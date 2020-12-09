@@ -6,5 +6,3 @@ fun main(args: Array<String>) {
     val dayTwoPartTwoSolution = DayTwo().countNewPolicyValidPasswordsInInput("src/main/resources/day_two_input.txt")
     println(dayTwoPartTwoSolution)
 }
-
-
