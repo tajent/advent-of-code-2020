@@ -4,31 +4,38 @@ import java.io.File
 
 class DayThree {
 
-    fun countTreesEncountered(fileName: String): Int {
-        var lineNumber = 0
+    fun countTreesEncountered(fileName: String, slope: Array<Int>): Int {
         var countTrees = 0
-        val terrainMap = transformInputToMapOfTreeRowsAndPositions(fileName)
-        var positionOnLine = 0
+        val terrainMap = transformInputToMapOfTreeRows(fileName)
+        var positionOnRow = 0
 
-        for (i in 0..terrainMap.count()) {
-            if (terrainMap[i]?.contains(positionOnLine.rem(31)) == true) {
+        for (row in 0..terrainMap.count() step slope[1]) {
+            if (isPositionATree(positionOnRow, terrainMap[row])) {
                 countTrees += 1
             }
-            positionOnLine += 3
+            positionOnRow += slope[0]
         }
         return countTrees
     }
 
-    fun transformInputToMapOfTreeRowsAndPositions(fileName: String): Map<Int, List<Int>> {
-        val terrainMap = mutableMapOf<Int, List<Int>>()
-        var row = 0
-        File(fileName).forEachLine { terrainMap[row] = getTreePositionsOnRow(it); row+= 1}
-        return terrainMap
+    fun isPositionATree(positionOnRow: Int, terrainRow: CharArray?): Boolean {
+            terrainRow ?: return false
+            val repeatablePosition = positionOnRow.rem(terrainRow.size)
+            return terrainRow[repeatablePosition] == '#'
     }
 
-    fun getTreePositionsOnRow(inputLine: String): List<Int> {
-        val treePositions = mutableListOf<Int>()
-        inputLine.forEachIndexed{index, character -> if (character == '#') {treePositions.add(index)} }
-        return treePositions
+    fun getProductOfTreesFromAllTraversals(fileName: String, slopes: List<Array<Int>>): Long {
+        var treeCounts = mutableListOf<Long>()
+        for (slope in slopes) {
+            treeCounts.add(countTreesEncountered(fileName, slope)*1L)
+        }
+        return treeCounts.reduce { acc, i ->  acc * i }
+    }
+
+    fun transformInputToMapOfTreeRows(fileName: String): Map<Int, CharArray> {
+        val terrainMap = mutableMapOf<Int, CharArray>()
+        var row = 0
+        File(fileName).forEachLine { terrainMap[row] = it.toCharArray(); row+= 1}
+        return terrainMap
     }
 }

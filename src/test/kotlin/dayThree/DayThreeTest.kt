@@ -6,23 +6,31 @@ import org.junit.jupiter.api.Test
 class DayThreeTest {
 
     @Test
-    fun shouldAddTreePositionsOnLineToList() {
-        val trees = "#..##.##.#.##.......#.......#.."
-        val result = DayThree().getTreePositionsOnRow(trees)
-
-        assertEquals(listOf(0, 3, 4, 6, 7, 9, 11, 12, 20, 28), result)
+    fun shouldReturnPositionIsATree() {
+        val terrainRow = charArrayOf('.','.','#','#','.')
+        assertTrue(DayThree().isPositionATree(2, terrainRow))
+        assertTrue(DayThree().isPositionATree(8, terrainRow))
+        assertFalse(DayThree().isPositionATree(0, terrainRow))
+        assertFalse(DayThree().isPositionATree(5, terrainRow))
     }
 
     @Test
     fun shouldTransformInputToMap() {
-        val result = DayThree().transformInputToMapOfTreeRowsAndPositions("src/test/resources/day_three_test_input.txt")
-        assertEquals(listOf(2, 3, 13, 14, 24, 25, 35, 36, 46, 47, 57, 58), result.get(0))
-        assertEquals(listOf(0, 4, 8, 11, 15, 19, 22, 26, 30, 33, 37, 41, 44, 48, 52, 55, 59, 63), result.get(1))
+        val result = DayThree().transformInputToMapOfTreeRows("src/test/resources/day_three_small_test_input.txt")
+        assertTrue(charArrayOf('.','.','#','#','.') contentEquals result[0])
+        assertTrue(charArrayOf('#','.','.','.','#') contentEquals result[1])
     }
 
     @Test
     fun shouldReturn7TreesWithSampleInput() {
-        val result = DayThree().countTreesEncountered("src/test/resources/day_three_test_input.txt")
+        val result = DayThree().countTreesEncountered("src/test/resources/day_three_test_input.txt", arrayOf(3,1))
         assertEquals(7, result)
+    }
+
+    @Test
+    fun shouldReturn366ForProductOfTreesWithSampleInput() {
+        val slopes = listOf(arrayOf(1,1), arrayOf(3,1), arrayOf(5,1), arrayOf(7,1), arrayOf(1,2))
+        val result = DayThree().getProductOfTreesFromAllTraversals("src/test/resources/day_three_test_input.txt", slopes)
+        assertEquals(336, result)
     }
 }
