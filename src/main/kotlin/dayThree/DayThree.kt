@@ -25,7 +25,7 @@ class DayThree {
     }
 
     fun getProductOfTreesFromAllTraversals(fileName: String, slopes: List<Array<Int>>): Long {
-        var treeCounts = mutableListOf<Long>()
+        val treeCounts = mutableListOf<Long>()
         for (slope in slopes) {
             treeCounts.add(countTreesEncountered(fileName, slope)*1L)
         }
