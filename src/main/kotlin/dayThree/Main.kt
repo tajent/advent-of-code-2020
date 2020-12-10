@@ -1,4 +1,4 @@
-import dayThree.DayThree
+package dayThree
 
 fun main(args: Array<String>) {
     val dayThreePartOneSolution = DayThree().countTreesEncountered("src/main/resources/day_three_input.txt", arrayOf(3,1))

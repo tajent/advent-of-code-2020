@@ -1,3 +1,5 @@
+package dayOne
+
 import java.util.*
 
 class DayOne {

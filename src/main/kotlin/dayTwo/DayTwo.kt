@@ -2,6 +2,7 @@ package dayTwo
 
 import java.io.File
 
+// refactor class and tests to be cleaner
 class DayTwo {
 
     fun countOldPolicyValidPasswordsInInput(fileName: String): Int{
@@ -38,6 +39,7 @@ class DayTwo {
         val secondLetterPosition = passwordData[0].split("-").last().toInt()-1
         val letter = passwordData[1].first()
         val password = passwordData[2]
+        // these need refactoring, as error prone
         val bothContainLetter = password[firstLetterPosition] == password[secondLetterPosition]
         val neitherContainLetter = password[firstLetterPosition] != letter && password[secondLetterPosition] != letter
         val eitherContainLetter = password[firstLetterPosition] == letter || password[secondLetterPosition] == letter

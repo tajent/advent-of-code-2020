@@ -1,4 +1,4 @@
-import dayTwo.DayTwo
+package dayTwo
 
 fun main(args: Array<String>) {
     val dayTwoPartOneSolution = DayTwo().countOldPolicyValidPasswordsInInput("src/main/resources/day_two_input.txt")
