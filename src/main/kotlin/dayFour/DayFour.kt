@@ -66,28 +66,30 @@ class DayFour {
         val byrValidRange = 1920..2002
         val iyrValidRange = 2010..2020
         val eyrValidRange = 2020..2030
-        if (field == "byr") {
-            return value.matches("^[0-9]{4}$".toRegex()) && value.toInt() in byrValidRange
+        when (field) {
+            "byr" -> {
+                return value.matches("^[0-9]{4}$".toRegex()) && value.toInt() in byrValidRange
+            }
+            "iyr" -> {
+                return value.toInt() in iyrValidRange
+            }
+            "eyr" -> {
+                return value.toInt() in eyrValidRange
+            }
+            "hgt" -> {
+                return isValidHeight(value)
+            }
+            "hcl" -> {
+                return isValidHairColour(value)
+            }
+            "ecl" -> {
+                return isValidEyeColour(value)
+            }
+            "pid" -> {
+                return isValidPassportId(value)
+            }
+            else -> return false
         }
-        if (field == "iyr") {
-            return value.toInt() in iyrValidRange
-        }
-        if (field == "eyr") {
-            return value.toInt() in eyrValidRange
-        }
-        if (field == "hgt") {
-            return isValidHeight(value)
-        }
-        if (field == "hcl") {
-            return isValidHairColour(value)
-        }
-        if (field == "ecl") {
-            return isValidEyeColour(value)
-        }
-        if (field == "pid") {
-            return isValidPassportId(value)
-        }
-        return false
     }
 
     fun isValidByFieldsAndValues(passport: List<String>): Boolean {
